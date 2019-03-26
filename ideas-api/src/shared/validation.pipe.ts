@@ -51,7 +51,7 @@ export class ValidationPipe implements PipeTransform<any> {
   }
 
   private isEmpty(object: any) {
-    if (Object.keys(value).length > 0) {
+    if (Object.keys(object).length > 0) {
       return false;
     }
     return true;

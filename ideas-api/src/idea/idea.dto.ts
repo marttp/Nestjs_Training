@@ -1,10 +1,9 @@
-import { IsString } from 'class-validator'
+import { IsString } from 'class-validator';
 
-export interface IdeaDTO {
-
+export class IdeaDTO {
   @IsString()
   idea: string;
-  
+
   @IsString()
   description: string;
 }
