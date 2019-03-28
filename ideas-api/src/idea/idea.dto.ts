@@ -9,6 +9,7 @@ export class IdeaDTO {
   description: string;
 }
 
+// ! RO = Response Object
 export class IdeaRO {
   id?: string;
   updated: Date;
@@ -16,4 +17,6 @@ export class IdeaRO {
   idea: string;
   description: string;
   author: UserRO;
+  upvotes?: number;
+  downvotes?: number;
 }
