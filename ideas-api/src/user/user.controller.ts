@@ -8,6 +8,7 @@ import {
   Body,
   UsePipes,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { AuthGuard } from 'src/shared/auth.guard';
 import { User } from './user.decorator';
@@ -24,8 +25,8 @@ export class UserController {
   //   return this.userService.showAll();
   // }
   @Get('api/users')
-  showAllUsers() {
-    return this.userService.showAll();
+  showAllUsers(@Query('page') page: number) {
+    return this.userService.showAll(page);
   }
 
   @Post('login')

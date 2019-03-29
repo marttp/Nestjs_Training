@@ -11,6 +11,7 @@ import {
   UsePipes,
   Logger,
   UseGuards,
+  Query,
 } from '@nestjs/common';
 import { IdeaService } from './idea.service';
 import { IdeaDTO } from './idea.dto';
@@ -28,8 +29,13 @@ export class IdeaController {
   }
 
   @Get()
-  showAllIdeas() {
-    return this.ideaService.showAll();
+  showAllIdeas(@Query('page') page: number) {
+    return this.ideaService.showAll(page);
+  }
+
+  @Get('/newest')
+  showNewestIdeas(@Query('page') page: number) {
+    return this.ideaService.showAll(page, true);
   }
 
   @Post()
