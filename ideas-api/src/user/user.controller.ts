@@ -29,13 +29,13 @@ export class UserController {
     return this.userService.showAll(page);
   }
 
-  @Post('login')
+  @Post('auth/login')
   @UsePipes(new ValidationPipe())
   login(@Body() data: UserDTO) {
     return this.userService.login(data);
   }
 
-  @Post('register')
+  @Post('auth/register')
   @UsePipes(new ValidationPipe())
   register(@Body() data: UserDTO) {
     return this.userService.register(data);
