@@ -1,34 +1,27 @@
-import { AuthEffects } from '@app/store/effects/auth.effect';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { StoreModule, ActionReducerMap } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import {
+  StoreRouterConnectingModule,
+  RouterStateSerializer,
+} from '@ngrx/router-store';
 
-import { AuthState, authReducer } from './reducers/auth.reducer';
-import { errorReducer, ErrorState } from './reducers/errors.reducer';
-
-export interface AppState {
-  error: ErrorState;
-  auth: AuthState;
-}
-
-export const reducers: ActionReducerMap<AppState> = {
-  error: errorReducer,
-  auth: authReducer,
-};
-
-export const effects = [AuthEffects];
+import { effects, reducers } from '@app/store';
+import { CustomSerializer } from '@app/store/reducers/router.reducer';
 
 @NgModule({
   imports: [
-    CommonModule,
-    // StoreModule.forRoot({}),
-    StoreModule.forRoot(reducers),
-    // EffectsModule.forRoot([]),
     EffectsModule.forRoot(effects),
+    StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument(),
+    StoreRouterConnectingModule,
+  ],
+  providers: [
+    {
+      provide: RouterStateSerializer,
+      useClass: CustomSerializer,
+    },
   ],
 })
 export class AppStoreModule {}

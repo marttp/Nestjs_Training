@@ -1,0 +1,14 @@
+<h2>Edit Idea</h2>
+
+<p-progressSpinner
+  *ngIf="(loading | async) || processSubmission"
+></p-progressSpinner>
+
+<div *ngIf="idea && !processSubmission">
+  <app-idea [idea]="idea" [displayOptions]="true"></app-idea>
+
+  <app-idea-editable
+    [idea]="idea"
+    (onSubmit)="submit($event)"
+  ></app-idea-editable>
+</div>

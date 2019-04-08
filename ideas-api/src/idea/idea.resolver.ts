@@ -44,7 +44,7 @@ export class IdeaResolver {
 
   @Mutation()
   @UseGuards(new AuthGuard())
-  async update(
+  async updateIdea(
     @Args('id') id: string,
     @Args('idea') idea: string,
     @Args('description') description: string,
